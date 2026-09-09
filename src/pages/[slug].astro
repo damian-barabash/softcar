@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticlePage from '../components/ArticlePage.astro';
+import { getContent } from '../lib/content';
+
+export async function getStaticPaths() {
+  const c = await getContent();
+  return c.pages
+    .filter((p) => p.kind !== 'service' && p.slug !== 'kontakt' && p.slug !== 'cennik' && p.slug !== 'oferta')
+    .map((p) => ({ params: { slug: p.slug }, props: { page: p } }));
+}
+
+const { page } = Astro.props;
+---
+<Base bodyClass="page" title={page.meta_title ?? page.title} description={page.meta_desc ?? undefined}>
+  <ArticlePage title={page.title} banner={page.banner_image} body={page.body_html} />
+</Base>

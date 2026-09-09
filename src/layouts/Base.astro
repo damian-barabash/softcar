@@ -1,0 +1,97 @@
+---
+import '../styles/legacy.css';
+import '../styles/legacy-desktop.css';
+import '../styles/site.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getContent } from '../lib/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const { title, description, bodyClass = '', canonical, ogImage } = Astro.props;
+const c = await getContent();
+const seo = c.settings.seo ?? {};
+const brand = c.settings.branding ?? {};
+const company = c.settings.company ?? {};
+const pageTitle = title ?? seo.title;
+const pageDesc = description ?? seo.description;
+const url = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+const og = ogImage ?? brand.og_image ?? '/images/design/logo-soft-car-service.png';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  name: company.name,
+  image: new URL(og, Astro.site).href,
+  telephone: company.phone,
+  email: company.email,
+  url: Astro.site?.href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.street,
+    postalCode: company.zip,
+    addressLocality: company.city,
+    addressCountry: 'PL',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: company.map_lat, longitude: company.map_lng },
+  openingHours: company.hours,
+};
+---
+
+<!DOCTYPE html>
+<html lang="pl-PL" itemscope itemtype="https://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{pageTitle}</title>
+    {pageDesc && <meta name="description" content={pageDesc} />}
+    <link rel="canonical" href={url} />
+    <link rel="icon" href={brand.favicon ?? '/images/design/favicon.ico'} type="image/vnd.microsoft.icon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={seo.site_name} />
+    <meta property="og:locale" content={seo.locale ?? 'pl_PL'} />
+    <meta property="og:title" content={pageTitle} />
+    {pageDesc && <meta property="og:description" content={pageDesc} />}
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={new URL(og, Astro.site).href} />
+    <link rel="preload" href="/fonts/poppins-regular-webfont.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fahkwang-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline set:html={JSON.stringify(jsonLd)} type="application/ld+json" />
+    <script is:inline>
+      document.documentElement.className += ' js';
+      (function () {
+        function bp() {
+          var w = window.innerWidth;
+          return w >= 1440 ? 'body-xl' : w >= 1200 ? 'body-lg' : w >= 992 ? 'body-md' : w >= 768 ? 'body-sm' : 'body-xs';
+        }
+        function set() {
+          var b = document.body;
+          if (!b) return;
+          b.className = b.className.replace(/\bbody-(xs|sm|md|lg|xl)\b/g, '').trim() + ' ' + bp();
+        }
+        document.addEventListener('DOMContentLoaded', set);
+        window.addEventListener('resize', set);
+      })();
+    </script>
+  </head>
+  <body class={`${bodyClass} light lang-pl`.trim()}>
+    <div id="wrapper">
+      <div id="container">
+        <Header />
+        <div id="main">
+          <slot />
+        </div>
+        <Footer />
+      </div>
+    </div>
+    <script src="/js/site.js" is:inline defer></script>
+  </body>
+</html>

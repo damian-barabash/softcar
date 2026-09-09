@@ -1,0 +1,16 @@
+---
+import { getContent } from '../lib/content';
+const c = await getContent();
+const images = c.gallery;
+---
+<div id="droppicsgallery35" data-id="35" class="droppicsgallery droppicsgallerymasonry 0" data-listchid="35">
+  <div class="droppicspictures">
+    {images.map((img) => (
+      <div class="wimg">
+        <a class="vbox-item" href={img.url} data-title="" data-gall="lightbox35">
+          <img class="img" src={img.thumb ?? img.url} alt={img.alt ?? ''} title="" loading="lazy" />
+        </a>
+      </div>
+    ))}
+  </div>
+</div>

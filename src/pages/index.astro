@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Slider from '../components/home/Slider.astro';
+import InfoBoxes from '../components/home/InfoBoxes.astro';
+import About from '../components/home/About.astro';
+import Usp from '../components/home/Usp.astro';
+import Marquee from '../components/home/Marquee.astro';
+import Counters from '../components/home/Counters.astro';
+import Parallax from '../components/home/Parallax.astro';
+import OfferTiles from '../components/home/OfferTiles.astro';
+---
+<Base bodyClass="home">
+  <div>
+    <div id="system-message-container"></div>
+    <Slider />
+      <InfoBoxes />
+      <About />
+      <Usp />
+      <Marquee />
+      <Counters />
+    <Parallax>
+      <OfferTiles />
+    </Parallax>
+    <div class="clearfix"></div>
+  </div>
+</Base>

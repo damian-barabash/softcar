@@ -1,0 +1,66 @@
+---
+import { getContent } from '../../lib/content';
+const c = await getContent();
+const h = c.settings.home_counters ?? {};
+---
+<div class="block173 ">
+  <div class="col-xs-12">
+    <div class="inner row">
+      <div class="section173 display-section" data-position="licznik-home-glowna-sekcja">
+        <div class="clearfix"></div>
+        <div class="block953 " id="section-counterhome">
+          <div class="col-xs-12">
+            <div class="inner row">
+              <div class="center" data-center="1">
+                <div class="section953 section-counterhome-d" data-position="licznik-d-home-sekcja">
+                  <div class="clearfix"></div>
+                  <div class="center">
+                    <div class="block952 ">
+                      <div class="col-xs-12">
+                        <div class="inner row text-center">
+                          <div class="center">
+                            <div class="row"><div class="col-md-4 col-md-offset-4">
+                              {h.kicker && <p class="mininaglowek">{h.kicker}</p>}
+                              <hr class="hr-zmienny-2" />
+                            </div></div>
+                            {h.heading && <div class="row"><div class="col-md-12"><h2 set:html={h.heading} /></div></div>}
+                            {h.body_html && <div class="row"><div class="col-md-12"><Fragment set:html={h.body_html} /></div></div>}
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  {c.counters.map((cn) => (
+                    <div class="center">
+                      <div class={`block${cn.css_block} `}>
+                        <div class="col-xs-12 col-sm-4">
+                          <div class="inner row text-center">
+                            <div class="counter ">
+                              <div class="title">
+                                <div class="ist-ccount">
+                                  <span class="number number_style" data-counter={cn.value}>0</span>{cn.suffix}
+                                </div>
+                                <div class="row"><div class="col-md-12"><p>{cn.label}</p></div></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

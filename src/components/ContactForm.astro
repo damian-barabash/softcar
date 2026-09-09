@@ -1,0 +1,93 @@
+---
+import { getContent } from '../lib/content';
+import { SUPABASE_URL } from '../lib/config';
+const c = await getContent();
+const f = c.settings.contact_form ?? {};
+const fields = f.fields ?? [];
+const endpoint = `${SUPABASE_URL}/functions/v1/contact`;
+---
+<div class="rsform">
+  <form method="post" id="userForm" class="sc-form" data-endpoint={endpoint} novalidate>
+    <div class="formContainer">
+      <div class="row">
+        <div class="col-sm-12">
+          {fields.map((fl: any) => (
+            <div class={`form-group rsform-block rsform-block-${fl.name} rsform-type-${fl.type === 'textarea' ? 'textarea' : 'textbox'}`}>
+              <label class="control-label formControlLabel" for={fl.name}>
+                <Fragment set:html={fl.label} />{fl.required && <strong class="formRequired">*</strong>}
+              </label>
+              <div class="formControls">
+                {fl.type === 'textarea' ? (
+                  <textarea cols="50" rows="3" name={fl.name} id={fl.name} class="rsform-text-box form-control" aria-required={fl.required ? 'true' : 'false'} required={fl.required}></textarea>
+                ) : (
+                  <input type={fl.type} name={fl.name} id={fl.name} size="20" class="rsform-input-box form-control" aria-required={fl.required ? 'true' : 'false'} required={fl.required} autocomplete={fl.name === 'email' ? 'email' : fl.name === 'phone' ? 'tel' : fl.name === 'name' ? 'name' : 'off'} />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group rsform-block rsform-block-agree-b rsform-type-checkboxgroup">
+            <div class="formControls">
+              <label for="agree" class="checkbox-inline sc-consent">
+                <input type="checkbox" name="agree" id="agree" value="tak" class="rsform-checkbox" required />
+                <Fragment set:html={f.rodo_html ?? `<p class="rsform-agree-class">${f.rodo ?? ''}</p>`} />
+              </label>
+            </div>
+          </div>
+          <div class="sc-hp" aria-hidden="true">
+            <label for="company_www">Nie wypełniaj tego pola</label>
+            <input type="text" name="company_www" id="company_www" tabindex="-1" autocomplete="off" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group rsform-block rsform-block-submit rsform-type-submitbutton">
+            <button type="submit" class="btn btn-default btn-default-size" data-idle={f.submit ?? 'Wyślij'}>{f.submit ?? 'Wyślij'}</button>
+          </div>
+          <div class="sc-msg" hidden data-ok={f.success} data-err={f.error}></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('userForm');
+    if (!form) return;
+    var msg = form.querySelector('.sc-msg');
+    var btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      msg.hidden = true;
+      msg.className = 'sc-msg';
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var data = Object.fromEntries(new FormData(form).entries());
+      btn.disabled = true;
+      btn.textContent = 'Wysyłanie…';
+      try {
+        var r = await fetch(form.dataset.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!r.ok) throw new Error('http ' + r.status);
+        msg.textContent = msg.dataset.ok;
+        msg.className = 'sc-msg ok';
+        msg.hidden = false;
+        form.reset();
+      } catch (err) {
+        msg.textContent = msg.dataset.err;
+        msg.className = 'sc-msg err';
+        msg.hidden = false;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = btn.dataset.idle;
+      }
+    });
+  })();
+</script>

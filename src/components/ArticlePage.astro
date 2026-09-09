@@ -1,0 +1,28 @@
+---
+import PageBanner from './PageBanner.astro';
+import InfoBoxes from './home/InfoBoxes.astro';
+import Gallery from './Gallery.astro';
+interface Props { title: string; banner?: string | null; body: string; parent?: { label: string; href: string } | null }
+const { title, banner, body, parent } = Astro.props;
+const [beforeGallery, afterGallery] = body.split('<!--GALERIA-->');
+---
+<div>
+  <div id="system-message-container"></div>
+  <PageBanner title={title} banner={banner} parent={parent} />
+  <div class="center" data-center="1">
+    <div id="content" class="col-xs-12">
+      <article class="item-page" data-content="1">
+        <Fragment set:html={beforeGallery} />
+        {afterGallery !== undefined && <Gallery />}
+        {afterGallery !== undefined && <Fragment set:html={afterGallery} />}
+        <slot name="article" />
+      </article>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="center">
+    <InfoBoxes place="pages" />
+  </div>
+  <slot />
+  <div class="clearfix"></div>
+</div>

@@ -1,0 +1,118 @@
+---
+import { getContent } from '../lib/content';
+const c = await getContent();
+const brand = c.settings.branding ?? {};
+const cta = c.settings.header_cta ?? [];
+const menu = c.headerMenu;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => {
+  const h = href.replace(/\/$/, '') || '/';
+  return h === '/' ? path === '/' : path === h || path.startsWith(h + '/');
+};
+---
+<header>
+  <div class="block161 full-buttons mainmenu">
+    <div class="col-xs-12">
+      <div class="inner row">
+        <div class="section161 display-section" data-position="header-glowna-sekcja">
+          <div class="clearfix"></div>
+          <div class="block256 header" id="section-header">
+            <div class="col-xs-12">
+              <div class="inner row">
+                <div class="section256 section-header-f" data-position="header-f-sekcja">
+                  <div class="clearfix"></div>
+
+                  <div class="block257 ">
+                    <div class="col-xs-12 col-lg-2 hidden-xs hidden-sm hidden-md">
+                      <div class="inner">
+                        <a href="/" class="logo">
+                          <img src={brand.logo} alt="Soft Car Service logo" width="170" height="90" />
+                        </a>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                  <div class="block258 menu-header-1 flex-menu align-center align-center-xs align-center-sm align-center-md align-center-lg align-center-xl">
+                    <div class="col-xs-12 col-lg-6">
+                      <div class="inner">
+                        <nav class="navbar navbar-default navbar-custom">
+                          <div class="navbar-header">
+                            <div class="visible-md visible-sm visible-xs">
+                              <a href="/" class="logo">
+                                <img src={brand.logo} alt="Soft Car Service logo" width="170" height="90" />
+                              </a>
+                            </div>
+                            <button type="button" class="navbar-toggle collapsed" id="navbar-toggle-258" aria-label="Menu" aria-expanded="false" aria-controls="navbar-collapse-258">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                          </div>
+                          <div class="navbar-collapse collapse" id="navbar-collapse-258">
+                            <ul class="nav navbar-nav menu">
+                              {menu.map((item) => (
+                                <li class={[
+                                  'item-' + item.id,
+                                  isActive(item.href) ? 'current active' : '',
+                                  item.children && item.children.length ? 'dropdown parent' : '',
+                                ].filter(Boolean).join(' ')}>
+                                  <a href={item.href} target={item.target}>{item.label}</a>
+                                  {item.children && item.children.length > 0 && (
+                                    <>
+                                      <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label={`Rozwiń: ${item.label}`}> <span class="caret"></span></a>
+                                      <ul class="dropdown-menu">
+                                        {item.children.map((sub) => (
+                                          <li class={'item-' + sub.id}>
+                                            <a href={sub.href} target={sub.target}>{sub.label}</a>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </nav>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                  <div class="block259 ">
+                    <div class="col-xs-12 col-lg-4">
+                      <div class="inner text-right-xl text-right-lg text-right-md text-center-sm text-center-xs">
+                        <div class="row">
+                          {cta.map((b: any, i: number) => (
+                            <div class="col-xs-6">
+                              <p style="text-align: center;">
+                                <a
+                                  class={i === 0 ? 'animated bounceIn btn btn-default' : 'btn btn-default'}
+                                  href={b.href}
+                                  target={b.href?.startsWith('http') ? '_blank' : undefined}
+                                  rel={b.href?.startsWith('http') ? 'noopener' : undefined}
+                                >{b.label}</a>
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</header>

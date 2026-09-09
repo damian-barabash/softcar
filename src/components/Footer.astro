@@ -1,0 +1,105 @@
+---
+import { getContent } from '../lib/content';
+const c = await getContent();
+const social = c.settings.social ?? [];
+const footer = c.settings.footer ?? {};
+const menu = c.footerMenu;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const SHARE_SVG = `<svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M20.79,5.83a3.57,3.57,0,0,0-3.25,1.63A3.4,3.4,0,0,0,17,9.6a.93.93,0,0,1-.51.91l-1.07.5a1.12,1.12,0,0,1-1.13-.07,5.27,5.27,0,0,0-4.35-.75,5.37,5.37,0,1,0,3.91,9.92,1.32,1.32,0,0,1,1.29,0l1,.59a.81.81,0,0,1,.4.73,2.48,2.48,0,0,0,.13,1,2.59,2.59,0,1,0,4.82-1.9,2.54,2.54,0,0,0-2-1.49,2.66,2.66,0,0,0-1.74.34.82.82,0,0,1-.9,0l-.61-.43a.83.83,0,0,1-.25-1.05,5.33,5.33,0,0,0,.62-2.48,5.15,5.15,0,0,0-.32-1.77.77.77,0,0,1,.32-.9l.78-.5a.9.9,0,0,1,1,0,3.45,3.45,0,0,0,2.25.65,3.54,3.54,0,0,0,.06-7.07Z"></path></svg>`;
+const copyright = String(footer.copyright_html ?? '').replace('{year}', String(new Date().getFullYear()));
+---
+<div class="block104  align-center fixed">
+  <div class="col-md-1 col-lg-1">
+    <div class="inner text-center">
+      <div class="gotoup  row">
+        <div class="col-md-12 glyphicon glyphicon-menu-up fixed-up" role="button" tabindex="0" aria-label="Do góry"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="block169 ">
+  <div class="col-xs-12">
+    <div class="inner row">
+      <div id="socialicons169" class="social-icons-container">
+        <ul class="social-icons">
+          {social.map((s: any) => (
+            <li>
+              <a class="csocial-link" href={s.href} target="_blank" rel="nofollow noopener">
+                <img src={s.icon} alt={s.alt ?? s.label} width="40" height="40" loading="lazy" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="mobile-button" role="button" tabindex="0" aria-label="Pokaż social media" set:html={SHARE_SVG}></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="block162 mainmenu">
+    <div class="col-xs-12">
+      <div class="inner row">
+        <div class="section162 display-section" data-position="footer-glowna-sekcja">
+          <div class="clearfix"></div>
+          <div class="block1504 " id="section-footer">
+            <div class="col-xs-12">
+              <div class="inner row">
+                <div class="section1504 section-footer-r" data-position="footer-r-sekcja">
+                  <div class="clearfix"></div>
+
+                  <div class="block1505 menu-footer-1 align-center">
+                    <div class="col-xs-12">
+                      <div class="inner">
+                        <div class="center">
+                          <div class="navbar-custom">
+                            <ul class="nav nav-pills menu">
+                              {menu.map((m) => (
+                                <li class={`item-${m.id}${(m.href.replace(/\/$/, '') || '/') === path ? ' current' : ''}`}>
+                                  <a href={m.href} target={m.target}>{m.label}</a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                  <div class="block1506 ">
+                    <div class="col-xs-12">
+                      <div class="inner text-center-sm text-center-xs">
+                        <div class="center">
+                          <div class="row">
+                            <div class="col-md-6" set:html={copyright}></div>
+                            <div class="col-md-6 justify-end margin-top-sm margin-top-xs">
+                              {(footer.legal_links ?? []).map((l: any) => (
+                                <p><a href={l.href}>{l.label}</a></p>
+                              ))}
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</footer>

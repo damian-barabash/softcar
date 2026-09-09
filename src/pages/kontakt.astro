@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
+import InfoBoxes from '../components/home/InfoBoxes.astro';
+import { getContent, getPage } from '../lib/content';
+
+const page = await getPage('kontakt');
+const c = await getContent();
+const co = c.settings.company ?? {};
+const f = c.settings.contact_form ?? {};
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${co.street}, ${co.zip} ${co.city}`)}&hl=pl&z=16&output=embed`;
+---
+<Base bodyClass="page" title={page.meta_title ?? page.title} description={page.meta_desc ?? undefined}>
+  <div>
+    <div id="system-message-container"></div>
+    <PageBanner title={page.title} banner={page.banner_image} />
+    <div class="center" data-center="1">
+      <div id="content" class="col-xs-12">
+        <article class="item-page" data-content="1">
+          <Fragment set:html={page.body_html} />
+        </article>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="center">
+      <InfoBoxes place="pages" />
+    </div>
+
+    <div class="block171 ">
+      <div class="col-xs-12">
+        <div class="inner row">
+          <div class="section171 display-section" data-position="kontakt-page-glowna-sekcja">
+            <div class="clearfix"></div>
+            <div class="block972 " id="section-contactpage">
+              <div class="col-xs-12">
+                <div class="inner row">
+                  <div class="section972 section-contactpage-b" data-position="kontakt-page-b-sekcja">
+                    <div class="clearfix"></div>
+
+                    <div class="block969 ">
+                      <div class="col-xs-12">
+                        <div class="inner text-center-sm text-center-xs">
+                          <div class="center">
+                            <div class="row">
+                              <div class="margin-bottom-xl-lg-md margin-bottom-sm margin-bottom-xs col-md-3">
+                                <p><img class="icon-bg-var-2" src="/images/design/icon-localization.webp" alt="Pin mapy" width="20" height="20" />&nbsp; &nbsp;<strong>Siedziba główna</strong></p>
+                                <p class="text-stylekmlrhjv6">{co.name}</p>
+                                <p>{co.street},<br />{co.zip} {co.city}</p>
+                                <p>&nbsp;</p>
+                              </div>
+                              <div class="col-md-3">
+                                <p><img class="icon-bg-var-2" src="/images/design/icon-open-time.webp" alt="Zegar" width="20" height="20" />&nbsp; &nbsp;<strong>Godziny otwarcia</strong></p>
+                                <p>{co.hours}</p>
+                                <p>&nbsp;</p>
+                              </div>
+                              <div class="margin-bottom-xl-lg-md margin-bottom-sm margin-bottom-xs col-md-3">
+                                <p><img class="icon-bg-var-2" src="/images/design/icon-phone.webp" alt="Telefon" width="20" height="20" />&nbsp; &nbsp;<strong>Telefon</strong></p>
+                                <p>&nbsp;</p>
+                                <p><a class="btn btn-default btn-lg" href={co.phone_href}>{co.phone}</a></p>
+                              </div>
+                              <div class="margin-bottom-sm margin-bottom-xs col-md-3">
+                                <p><img class="icon-bg-var-2" src="/images/design/icon-mail.webp" alt="Mail" width="20" height="20" />&nbsp; &nbsp;<strong>E-mail</strong></p>
+                                <p>&nbsp;</p>
+                                <p><a class="btn btn-default btn-lg" href={`mailto:${co.email}`}>{co.email}</a></p>
+                              </div>
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+
+                    <div class="block1445 ">
+                      <div class="col-xs-12">
+                        <div class="inner row">
+                          <div class="sc-map">
+                            <iframe src={mapSrc} title={`Mapa dojazdu — ${co.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+
+                    <div class="block974 ">
+                      <div class="col-xs-12">
+                        <div class="inner row">
+                          <div class="center" data-center="1">
+                            <div class="section974 display-section" data-position="kontakt-page-b-sekcja-wew">
+                              <div class="clearfix"></div>
+                              <div class="center">
+                                <div class="block975 ">
+                                  <div class="col-xs-12 col-md-6">
+                                    <div class="inner">
+                                      <div class="row"><div class="col-md-12">
+                                        <h2>{f.heading}</h2>
+                                        <p>{f.lead}</p>
+                                        <p class="mininaglowek-4">{f.required_note}</p>
+                                      </div></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="center">
+                                <div class="block970 ">
+                                  <div class="col-xs-12 col-md-6">
+                                    <div class="inner">
+                                      <ContactForm />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</Base>

@@ -1,0 +1,37 @@
+---
+interface Props { place?: 'home' | 'pages' }
+import { getContent } from '../../lib/content';
+const { place = 'home' } = Astro.props;
+const c = await getContent();
+const boxes = c.infoBoxes.filter((b) => b.placement === place || b.placement === 'both');
+const VIS: Record<string, string> = {
+  all: 'col-xs-12',
+  mobile: 'col-xs-12  hidden-sm hidden-md hidden-lg',
+  desktop: 'col-xs-12 hidden-xs',
+};
+---
+{boxes.map((b) => (
+  <div class={b.visibility === 'mobile' && place === 'home' ? 'sc-nowrap' : 'center'}>
+  <div class={`block${b.css_block} `}>
+    <div class={VIS[b.image_side === 'none' ? b.visibility ?? 'all' : b.visibility ?? 'all'] ?? VIS.all}>
+      <div class="inner">
+        <div class={`box${b.css_block}`}>
+          <div class="clearfix"></div>
+          <div class="text"><div class={b.image ? 'wrapper col-lg-12' : 'wrapper'}>
+            <div class="row"><div class="col-md-12">
+              {b.title && <p class="text-stylekmlrh5jn">{b.title}</p>}
+              <Fragment set:html={b.body_html} />
+            </div></div>
+          </div></div>
+          {b.image && (
+            <div class={`image text-${b.image_side === 'left' ? 'left' : 'right'} `}>
+              <img src={b.image} class={` pull-${b.image_side === 'left' ? 'left' : 'right'} `} alt={b.title ?? ''} loading="lazy" />
+            </div>
+          )}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  </div>
+))}

@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticlePage from '../components/ArticlePage.astro';
+import { getPage } from '../lib/content';
+const page = await getPage('cennik');
+---
+<Base bodyClass="page" title={page.meta_title ?? page.title} description={page.meta_desc ?? undefined}>
+  <ArticlePage title={page.title} banner={page.banner_image} body={page.body_html} />
+</Base>

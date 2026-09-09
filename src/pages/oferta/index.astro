@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticlePage from '../../components/ArticlePage.astro';
+import OfferTiles from '../../components/home/OfferTiles.astro';
+import { getPage } from '../../lib/content';
+const page = await getPage('oferta');
+---
+<Base bodyClass="page" title={page.meta_title ?? page.title} description={page.meta_desc ?? undefined}>
+  <ArticlePage title={page.title} banner={page.banner_image} body={page.body_html}>
+    <OfferTiles place="oferta" />
+  </ArticlePage>
+</Base>

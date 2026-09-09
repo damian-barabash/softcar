@@ -1,0 +1,105 @@
+---
+interface Props { place?: 'home' | 'oferta' }
+import { getContent } from '../../lib/content';
+const { place = 'home' } = Astro.props;
+const c = await getContent();
+const h = place === 'home' ? (c.settings.home_offer ?? {}) : {};
+const tiles = c.offer.filter((o) => o.placement === place);
+---
+{place === 'home' ? (
+  <div class="block1558 " id="section-offerhome">
+    <div class="col-xs-12">
+      <div class="inner row">
+        <div class="section1558 section-offerhome-l" data-position="oferta-home-l-sekcja">
+          <div class="clearfix"></div>
+          <div class="container-fluid"><div class="row">
+            <div class="block1557 ">
+              <div class="col-xs-12">
+                <div class="inner">
+                  <div class="center">
+                    <div class="row"><div class="col-md-3 col-sm-4">
+                      {h.kicker && <p class="mininaglowek">{h.kicker}</p>}
+                      <hr class="hr-zmienny-2" />
+                    </div></div>
+                    {h.heading && <div class="row"><div class="col-md-12"><h2 set:html={h.heading} /></div></div>}
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div></div>
+            {tiles.map((o) => (
+              <div class="center">
+                <div class={`block${o.css_block} brr-md-inner pseudo-arrow box-overlay-circle border-white`}>
+                  <div class="col-xs-12 col-sm-4">
+                    <div class="inner text-center">
+                      <a href={o.href} class="linkall" aria-label={o.title}></a>
+                      <div class={`box${o.css_block}`}>
+                        <div class="image text-center ">
+                          <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="text"><div class="wrapper"><div class="row"><div class="col-md-12">
+                          <h2 set:html={o.title} />
+                        </div></div></div></div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+) : (
+  <div class="block182 ">
+    <div class="col-xs-12">
+      <div class="inner row">
+        <div class="section182 display-section" data-position="oferta-page-glowna-sekcja">
+          <div class="clearfix"></div>
+          <div class="block1694 " id="section-offerpage">
+            <div class="col-xs-12">
+              <div class="inner row">
+                <div class="center" data-center="1">
+                  <div class="section1694 section-offerpage-l" data-position="oferta-page-l-sekcja">
+                    <div class="clearfix"></div>
+                    {tiles.map((o) => (
+                      <div class="center">
+                        <div class={`block${o.css_block} brr-md-inner pseudo-arrow box-overlay-circle border-white`}>
+                          <div class="col-xs-12 col-sm-4">
+                            <div class="inner text-center">
+                              <a href={o.href} class="linkall" aria-label={o.title}></a>
+                              <div class={`box${o.css_block}`}>
+                                <div class="image text-center ">
+                                  <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" />
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="text"><div class="wrapper"><div class="row"><div class="col-md-12">
+                                  <h2 set:html={o.title} />
+                                </div></div></div></div>
+                              </div>
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+)}

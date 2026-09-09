@@ -1,0 +1,64 @@
+---
+import { getContent } from '../../lib/content';
+const c = await getContent();
+const slides = c.slides;
+---
+<div class="block196 ">
+  <div class="col-xs-12">
+    <div class="inner row">
+      <div class="section196 display-section" data-position="slider-main-section">
+        <div class="clearfix"></div>
+        <div class="block279 " id="section-sliderhome">
+          <div class="col-xs-12">
+            <div class="inner row">
+              <div class="section279 section-sliderhome-h" data-position="slider-h-section">
+                <div class="clearfix"></div>
+                <div class="block280 slickDots SlickDotsActive align-center">
+                  <div class="col-xs-12 col-sm-12 hidden-xs">
+                    <div class="inner row">
+                      <div class="slider slide-fade ">
+                        {slides.map((s, i) => (
+                          <div class={`slide${s.css_slide}`} data-type="image" data-delay="0">
+                            <div class="description">
+                              <div class="center">
+                                <div class="text  col-xs-12">
+                                  <div class="row"><div class="col-md-12 text-center">
+                                    {s.kicker && <p class="mininaglowek">{s.kicker}</p>}
+                                    <hr class="hr-zmienny-2" />
+                                    {s.title && <p class="heading3" set:html={s.title} />}
+                                    <Fragment set:html={s.body_html ?? ''} />
+                                  </div></div>
+                                  {s.button_label && (
+                                    <div class="button-wrapper-slide  text-center">
+                                      <a class="btn" href={s.button_href ?? '#'} target="_self" set:html={s.button_label} />
+                                    </div>
+                                  )}
+                                  <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                {s.button_href && <a href={s.button_href} target="_self" class="slide-link" aria-label={s.title ?? 'Slajd'}></a>}
+                              </div>
+                            </div>
+                            <picture>
+                              <source media="(max-width: 480px)" srcset="/images/design/blank.png" />
+                              <img src={s.image} alt={s.title ?? ''} class=" slideimage" width="1920" height="900" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
+                            </picture>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
