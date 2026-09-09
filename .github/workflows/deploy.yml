@@ -26,12 +26,14 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Instalacja zależności
         run: npm ci
 
+      # Zmienne repozytorium sa opcjonalne — gdy ich nie ma, uzywamy wartosci z src/lib/config.ts.
+      # Puste zmienne celowo nie sa przekazywane (patrz komentarz w config.ts).
       - name: Budowanie strony
         env:
           PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}

@@ -1,9 +1,9 @@
-@font-face{font-family:'poppins-bold';font-display:swap;src:url('/fonts/poppins-bold-webfont.eot?#iefix') format('embedded-opentype'),url(/fonts/poppins-bold-webfont.woff2) format('woff2'),url('/fonts/poppins-bold-webfont.svg#poppins-bold') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'poppinsregular';font-display:swap;src:url('/fonts/poppins-regular-webfont.eot?#iefix') format('embedded-opentype'),url(/fonts/poppins-regular-webfont.woff2) format('woff2'),url('/fonts/poppins-regular-webfont.svg#poppinsregular') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'fahkwang_regular';font-display:swap;src:url('/fonts/fahkwang-regular.eot?#iefix') format('embedded-opentype'),url(/fonts/fahkwang-regular.woff2) format('woff2'),url('/fonts/fahkwang-regular.svg#fahkwang_regular') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'poppins-italic';font-display:swap;src:url('/fonts/poppins-italic-webfont.eot?#iefix') format('embedded-opentype'),url(/fonts/poppins-italic-webfont.woff2) format('woff2'),url('/fonts/poppins-italic-webfont.svg#poppinsitalic') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'poppinslight';font-display:swap;src:url('/fonts/poppins-light-webfont.eot?#iefix') format('embedded-opentype'),url(/fonts/poppins-light-webfont.woff2) format('woff2'),url('/fonts/poppins-light-webfont.svg#poppinslight') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'archivo_regular';font-display:swap;src:url('/fonts/archivo-regular-webfont.eot?#iefix') format('embedded-opentype'),url(/fonts/archivo-regular-webfont.woff2) format('woff2'),url('/fonts/archivo-regular-webfont.svg#archivo_regular') format('svg');font-weight:400;font-style:normal}
+@font-face{font-family:'poppins-bold';font-display:swap;src:url(/fonts/poppins-bold-webfont.woff2) format('woff2'),url(/fonts/poppins-bold-webfont.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'poppinsregular';font-display:swap;src:url(/fonts/poppins-regular-webfont.woff2) format('woff2'),url(/fonts/poppins-regular-webfont.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'fahkwang_regular';font-display:swap;src:url(/fonts/fahkwang-regular.woff2) format('woff2'),url(/fonts/fahkwang-regular.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'poppins-italic';font-display:swap;src:url(/fonts/poppins-italic-webfont.woff2) format('woff2'),url(/fonts/poppins-italic-webfont.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'poppinslight';font-display:swap;src:url(/fonts/poppins-light-webfont.woff2) format('woff2'),url(/fonts/poppins-light-webfont.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'archivo_regular';font-display:swap;src:url(/fonts/archivo-regular-webfont.woff2) format('woff2'),url(/fonts/archivo-regular-webfont.woff) format('woff');font-weight:400;font-style:normal}
 
 [class*='iconfont-']:before{display:inline-block;font-family:'5stariconset';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .iconfont-search:before{content:'\0041'}
@@ -102,9 +102,9 @@
 
 
 
-@font-face{font-family:'fahkwang_bold';font-display:swap;src:url('/fonts/fahkwang-bold.eot?#iefix') format('embedded-opentype'),url(/fonts/fahkwang-bold.woff2) format('woff2'),url('/fonts/fahkwang-bold.svg#fahkwang_bold') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'fahkwang_italic';font-display:swap;src:url('/fonts/fahkwang-italic.eot?#iefix') format('embedded-opentype'),url(/fonts/fahkwang-italic.woff2) format('woff2'),url('/fonts/fahkwang-italic.svg#fahkwang_italic') format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:'fahkwang_light';font-display:swap;src:url('/fonts/fahkwang-light.eot?#iefix') format('embedded-opentype'),url(/fonts/fahkwang-light.woff2) format('woff2'),url('/fonts/fahkwang-light.svg#fahkwang_light') format('svg');font-weight:400;font-style:normal}
+@font-face{font-family:'fahkwang_bold';font-display:swap;src:url(/fonts/fahkwang-bold.woff2) format('woff2'),url(/fonts/fahkwang-bold.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'fahkwang_italic';font-display:swap;src:url(/fonts/fahkwang-italic.woff2) format('woff2'),url(/fonts/fahkwang-italic.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:'fahkwang_light';font-display:swap;src:url(/fonts/fahkwang-light.woff2) format('woff2'),url(/fonts/fahkwang-light.woff) format('woff');font-weight:400;font-style:normal}
 
 
 
@@ -232,7 +232,7 @@ optgroup{font-weight:700}
 table{border-spacing:0;border-collapse:collapse}
 td,th{padding:0}
 @media print{*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}a[href^="javascript:"]:after,a[href^="#"]:after{content:""}blockquote,pre{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}img,tr{page-break-inside:avoid}img{max-width:100%!important}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}.navbar{display:none}.btn>.caret,.dropup>.btn>.caret{border-top-color:#000!important}.label{border:1px solid #000}.table{border-collapse:collapse!important}.table td,.table th{background-color:#fff!important}.table-bordered td,.table-bordered th{border:1px solid #ddd!important}}
-@font-face{font-family:'Glyphicons Halflings';font-display:swap;src:url(/fonts/glyphicons-halflings-regular.woff2) format('woff2')}
+@font-face{font-family:'Glyphicons Halflings';font-display:swap;src:url(/fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(/fonts/glyphicons-halflings-regular.woff) format('woff')}
 .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .glyphicon-asterisk:before{content:"\002a"}
 .glyphicon-plus:before{content:"\002b"}
@@ -3604,12 +3604,12 @@ img.figlio{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:non
 strong,b{font-weight:700}
 em,i{font-style:italic}
 .color1 *,.color2 *,.color3 *,.color4 *,.color5 *,.color6 *,.color-white *{color:inherit!important}
-.tlo1{background:url(/images/design/page/layout/tlo1.jpg) 50% 0 no-repeat}
-.tlo2{background:url(/images/design/page/layout/tlo2.jpg) 50% 0 no-repeat}
-.tlo3{background:url(/images/design/page/layout/tlo3.jpg) 50% 0 no-repeat}
-.tlo4{background:url(/images/design/page/layout/tlo4.jpg) 50% 0 no-repeat}
-.tlo5{background:url(/images/design/page/layout/tlo5.jpg) 50% 0 no-repeat}
-.tlo6{background:url(/images/design/page/layout/tlo6.jpg) 50% 0 no-repeat}
+
+
+
+
+
+
 .body-sm div[class*='ordering-sm-'],.body-xs div[class*='ordering-xs-']{display:flex;flex-direction:column}
 .body-sm .ordering-sm-1,.body-xs .ordering-xs-1{order:1}
 .body-sm .ordering-sm-2,.body-xs .ordering-xs-2{order:2}
@@ -6584,7 +6584,7 @@ body .block748>div:not(.clearfix)::before{content:"";width:100%;height:100%;posi
 #colorbox.droppics .cboxIframe{background:#fff}
 #colorbox.droppics #cboxError{padding:50px;border:1px solid #ccc}
 #colorbox.droppics #cboxLoadedContent{margin:0;border:8px solid #FFF;webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;background:#fff;padding:1px}
-#colorbox.droppics #cboxLoadingGraphic{background:url(../components/com_droppics/assets/images/loading.gif) no-repeat center center}
+#colorbox.droppics #cboxLoadingGraphic{background:url(/components/com_droppics/assets/images/loading.gif) no-repeat center center}
 #colorbox.droppics #cboxLoadingOverlay{background:transparent;webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}
 #colorbox.droppics #cboxTitle{position:absolute;bottom:-35px;left:10px;top:auto;left:auto;border:none;color:#cdcdcd;text-align:left;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;width:90%}
 #colorbox.droppics #cboxCurrent{position:absolute;top:-22px;right:205px;text-indent:-9999px;bottom:auto;right:auto;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;border:none;background-color:transparent}

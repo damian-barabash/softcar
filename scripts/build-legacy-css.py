@@ -50,14 +50,24 @@ css = re.sub(r'@font-face\s*\{[^}]*\}', lambda m: m.group(0) if KEEP.search(m.gr
 css = (css.replace('../templates/site/fonts/', '/fonts/')
           .replace('../images/', '/images/').replace('../media/', '/media/')
           .replace('../templates/', '/templates/')
-          .replace('https://softcarservice.pl/', '/'))
-css = re.sub(r',\s*url\(/fonts/[^)]+\)\s*format\((["\'])(?:svg|truetype|embedded-opentype|woff)\1\)', '', css)
+          .replace('https://softcarservice.pl/', '/')
+          .replace('../components/', '/components/'))
+# hostujemy wylacznie woff2 — reszta formatow to martwe odwolania ze starego szablonu
+# (adresy bywaja w cudzyslowach, stad opcjonalny znak cytatu we wzorcu)
+css = re.sub(r'url\(["\']?/fonts/[^)]+?\.(?:eot|svg|ttf)[^)]*\)\s*format\((["\'])[^)]*?\1\)\s*,?', '', css)
+css = re.sub(r'url\(["\']?/fonts/[^)]+?\.(?:eot|svg|ttf)[^)]*\)\s*,?', '', css)
+css = re.sub(r'src:\s*,', 'src:', css)
+css = re.sub(r',\s*(?=[;}])', '', css)
+css = re.sub(r'src:\s*(?=[;}])', '', css)
 css = re.sub(r'src:\s*url\(/fonts/[^)]+\.eot[^)]*\);', '', css)
 css = re.sub(r'url\(/fonts/glyphicons-halflings-regular\.eot\?#iefix\)\s*format\((["\'])embedded-opentype\1\),?', '', css)
 # hostujemy wylacznie woff2 — usuwamy odwolania do eot/svg/ttf, ktore i tak konczylyby sie 404
 css = re.sub(r'url\(/fonts/[^)]+\.(?:eot|svg|ttf)[^)]*\)\s*(?:format\((["\'])[^)]*\1\))?,?', '', css)
 css = re.sub(r'src:\s*;', '', css)
 css = re.sub(r'src:\s*,', 'src:', css)
+
+# klasy .tlo1-.tlo6 wskazuja na tla, ktorych nie ma juz na starym serwerze (404) i nigdzie nie sa uzywane
+css = re.sub(r'\.tlo[1-6]\{[^}]*\}', '', css)
 
 # uszkodzone deklaracje z generatora starego szablonu (PostCSS na nich pada)
 css = re.sub(r'([;{])opacity:(?=-webkit-|-moz-|-o-|transition:)', r'\1', css)
