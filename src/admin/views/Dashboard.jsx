@@ -42,13 +42,16 @@ export default function Dashboard({ toast, go }) {
         <h1>Pulpit</h1>
         <div className="actions">
           <a className="btn ghost" href="/" target="_blank" rel="noreferrer">Zobacz stronę</a>
+          <a className="btn ghost" href="/?edit=1" target="_blank" rel="noreferrer">Edytuj wizualnie</a>
           <button className="btn" onClick={publish} disabled={busy}>{busy ? 'Publikowanie…' : 'Opublikuj zmiany'}</button>
         </div>
       </div>
 
       <div className="warn">
-        Zmiany treści zapisują się od razu w bazie. Aby pojawiły się na stronie publicznej,
-        kliknij <strong>„Opublikuj zmiany”</strong> — strona przebuduje się automatycznie (ok. 1 minuty).
+        Treść możesz zmieniać na dwa sposoby: w tym panelu albo <strong>bezpośrednio na stronie</strong>
+        (przycisk „Edytuj wizualnie” — klikasz tekst lub zdjęcie i piszesz w miejscu).
+        Zapis trafia od razu do bazy; aby zmiany zobaczyli odwiedzający, kliknij
+        <strong>„Opublikuj zmiany”</strong> — strona przebuduje się automatycznie (ok. 1 minuty).
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: 16, marginBottom: 16 }}>

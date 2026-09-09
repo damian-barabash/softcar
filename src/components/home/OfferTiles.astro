@@ -18,10 +18,10 @@ const tiles = c.offer.filter((o) => o.placement === place);
                 <div class="inner">
                   <div class="center">
                     <div class="row"><div class="col-md-3 col-sm-4">
-                      {h.kicker && <p class="mininaglowek">{h.kicker}</p>}
+                      {h.kicker && <p class="mininaglowek" data-sc="settings:home_offer:kicker:text" data-sc-label="Oferta — nadtytuł">{h.kicker}</p>}
                       <hr class="hr-zmienny-2" />
                     </div></div>
-                    {h.heading && <div class="row"><div class="col-md-12"><h2 set:html={h.heading} /></div></div>}
+                    {h.heading && <div class="row"><div class="col-md-12"><h2 data-sc="settings:home_offer:heading:text" data-sc-label="Oferta — nagłówek" set:html={h.heading} /></div></div>}
                     <div class="clearfix"></div>
                   </div>
                 </div>
@@ -37,11 +37,11 @@ const tiles = c.offer.filter((o) => o.placement === place);
                       <a href={o.href} class="linkall" aria-label={o.title}></a>
                       <div class={`box${o.css_block}`}>
                         <div class="image text-center ">
-                          <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" />
+                          <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" data-sc={`offer_tiles:${o.id}:image:image`} data-sc-label="Kafelek — obraz" />
                         </div>
                         <div class="clearfix"></div>
                         <div class="text"><div class="wrapper"><div class="row"><div class="col-md-12">
-                          <h2 set:html={o.title} />
+                          <h2 data-sc={`offer_tiles:${o.id}:title:text`} data-sc-label="Kafelek — tytuł" set:html={o.title} />
                         </div></div></div></div>
                       </div>
                     </div>
@@ -76,11 +76,11 @@ const tiles = c.offer.filter((o) => o.placement === place);
                               <a href={o.href} class="linkall" aria-label={o.title}></a>
                               <div class={`box${o.css_block}`}>
                                 <div class="image text-center ">
-                                  <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" />
+                                  <img src={o.image} class=" circleimg " alt={o.image_alt ?? o.title} loading="lazy" width="768" height="768" data-sc={`offer_tiles:${o.id}:image:image`} data-sc-label="Kafelek — obraz" />
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="text"><div class="wrapper"><div class="row"><div class="col-md-12">
-                                  <h2 set:html={o.title} />
+                                  <h2 data-sc={`offer_tiles:${o.id}:title:text`} data-sc-label="Kafelek — tytuł" set:html={o.title} />
                                 </div></div></div></div>
                               </div>
                             </div>

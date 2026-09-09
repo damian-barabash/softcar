@@ -19,13 +19,13 @@ const VIS: Record<string, string> = {
           <div class="clearfix"></div>
           <div class="text"><div class={b.image ? 'wrapper col-lg-12' : 'wrapper'}>
             <div class="row"><div class="col-md-12">
-              {b.title && <p class="text-stylekmlrh5jn">{b.title}</p>}
-              <Fragment set:html={b.body_html} />
+              {b.title && <p class="text-stylekmlrh5jn" data-sc={`info_boxes:${b.id}:title:text`} data-sc-label="Blok — tytuł">{b.title}</p>}
+              <div data-sc={`info_boxes:${b.id}:body_html:html`} data-sc-label="Blok informacyjny" set:html={b.body_html} />
             </div></div>
           </div></div>
           {b.image && (
             <div class={`image text-${b.image_side === 'left' ? 'left' : 'right'} `}>
-              <img src={b.image} class={` pull-${b.image_side === 'left' ? 'left' : 'right'} `} alt={b.title ?? ''} loading="lazy" />
+              <img src={b.image} class={` pull-${b.image_side === 'left' ? 'left' : 'right'} `} alt={b.title ?? ''} loading="lazy" data-sc={`info_boxes:${b.id}:image:image`} data-sc-label="Blok — obraz" />
             </div>
           )}
         </div>

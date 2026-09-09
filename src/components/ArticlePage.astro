@@ -2,8 +2,8 @@
 import PageBanner from './PageBanner.astro';
 import InfoBoxes from './home/InfoBoxes.astro';
 import Gallery from './Gallery.astro';
-interface Props { title: string; banner?: string | null; body: string; parent?: { label: string; href: string } | null }
-const { title, banner, body, parent } = Astro.props;
+interface Props { title: string; banner?: string | null; body: string; parent?: { label: string; href: string } | null; pageId?: number }
+const { title, banner, body, parent, pageId } = Astro.props;
 const [beforeGallery, afterGallery] = body.split('<!--GALERIA-->');
 ---
 <div>
@@ -12,9 +12,11 @@ const [beforeGallery, afterGallery] = body.split('<!--GALERIA-->');
   <div class="center" data-center="1">
     <div id="content" class="col-xs-12">
       <article class="item-page" data-content="1">
-        <Fragment set:html={beforeGallery} />
+        <div data-sc={pageId ? `pages:${pageId}:body_html#0:html` : undefined} data-sc-label="Treść strony" set:html={beforeGallery} />
         {afterGallery !== undefined && <Gallery />}
-        {afterGallery !== undefined && <Fragment set:html={afterGallery} />}
+        {afterGallery !== undefined && (
+          <div data-sc={pageId ? `pages:${pageId}:body_html#1:html` : undefined} data-sc-label="Treść pod galerią" set:html={afterGallery} />
+        )}
         <slot name="article" />
       </article>
     </div>

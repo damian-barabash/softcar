@@ -1,0 +1,74 @@
+/* Wizualny edytor strony — warstwa widoczna wylacznie dla zalogowanej redakcji. */
+.sce-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147483000;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 16px; background: #1c2226; color: #eceff1;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  box-shadow: 0 -2px 18px rgba(0, 0, 0, .35);
+}
+.sce-bar * { box-sizing: border-box; font-family: inherit; }
+.sce-bar .sce-logo { font-weight: 700; letter-spacing: .04em; margin-right: 4px; }
+.sce-bar .sce-status { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 999px; font-weight: 600; font-size: 13px; }
+.sce-bar .sce-status.clean { background: #1f3b2a; color: #7fd6a2; }
+.sce-bar .sce-status.dirty { background: #4a3410; color: #ffc266; }
+.sce-bar .sce-status.busy  { background: #23384d; color: #86bdf0; }
+.sce-bar .sce-spacer { flex: 1; }
+.sce-bar button, .sce-bar a.sce-btn {
+  border: 1px solid #3a444b; background: #2a3238; color: #eceff1;
+  border-radius: 6px; padding: 7px 14px; font-size: 13.5px; font-weight: 600; cursor: pointer; text-decoration: none;
+}
+.sce-bar button:hover, .sce-bar a.sce-btn:hover { background: #343d44; }
+.sce-bar button.primary { background: #f25c05; border-color: #f25c05; color: #fff; }
+.sce-bar button.primary:hover { background: #d24f03; }
+.sce-bar button:disabled { opacity: .5; cursor: not-allowed; }
+.sce-bar .sce-hint { font-size: 12.5px; color: #9aa5ac; }
+
+body.sce-on { padding-bottom: 58px; }
+
+/* podswietlenie edytowalnych obszarow */
+body.sce-on [data-sc] { outline: 1px dashed rgba(242, 92, 5, .55); outline-offset: 2px; cursor: text; position: relative; }
+body.sce-on [data-sc]:hover { outline: 2px solid #f25c05; outline-offset: 2px; }
+body.sce-on [data-sc][data-sc-type="image"] { cursor: pointer; }
+body.sce-on [data-sc].sce-focus { outline: 2px solid #f25c05; outline-offset: 2px; background: rgba(242, 92, 5, .05); }
+body.sce-on [data-sc].sce-changed { outline-color: #ffc266; }
+body.sce-on [data-sc]:focus { outline: 2px solid #f25c05; }
+
+.sce-tip {
+  position: fixed; z-index: 2147483001; pointer-events: none;
+  background: #1c2226; color: #fff; font: 600 11.5px/1 -apple-system, sans-serif;
+  padding: 4px 8px; border-radius: 4px; white-space: nowrap; transform: translateY(-100%);
+}
+
+/* pasek formatowania nad edytowanym tekstem */
+.sce-fmt {
+  position: absolute; z-index: 2147483002; display: flex; gap: 2px;
+  background: #1c2226; border-radius: 6px; padding: 4px; box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+}
+.sce-fmt button { border: 0; background: transparent; color: #eceff1; border-radius: 4px; padding: 5px 9px; font-size: 13px; cursor: pointer; }
+.sce-fmt button:hover { background: #343d44; }
+
+/* okno wyboru pliku */
+.sce-modal { position: fixed; inset: 0; z-index: 2147483003; background: rgba(15, 20, 24, .6); display: grid; place-items: center; padding: 24px; }
+.sce-modal .box {
+  background: #fff; color: #1c2226; border-radius: 10px; width: min(920px, 100%); max-height: 84vh; overflow: auto; padding: 22px;
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+.sce-modal h3 { margin: 0 0 16px; font-size: 17px; }
+.sce-modal .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.sce-modal .grid img { width: 100%; height: 100px; object-fit: cover; border: 1px solid #e2e6ea; border-radius: 6px; cursor: pointer; background: #eceff1; }
+.sce-modal .grid img:hover { border-color: #f25c05; }
+.sce-modal .row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+.sce-modal input[type=text] { flex: 1; min-width: 240px; padding: 8px 11px; border: 1px solid #e2e6ea; border-radius: 6px; font: inherit; }
+.sce-modal button { border: 1px solid #e2e6ea; background: #fff; border-radius: 6px; padding: 8px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+.sce-modal button.primary { background: #f25c05; border-color: #f25c05; color: #fff; }
+
+/* dyskretny przycisk wejscia w tryb edycji (widoczny tylko dla zalogowanej redakcji) */
+.sce-launch {
+  position: fixed; right: 18px; bottom: 18px; z-index: 2147483000;
+  border: 0; border-radius: 999px; padding: 11px 20px;
+  background: #1c2226; color: #fff; cursor: pointer;
+  font: 600 13.5px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .35);
+  opacity: .82; transition: opacity .18s ease, transform .18s ease;
+}
+.sce-launch:hover { opacity: 1; transform: translateY(-1px); }

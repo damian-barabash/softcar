@@ -20,11 +20,11 @@ const h = c.settings.home_counters ?? {};
                         <div class="inner row text-center">
                           <div class="center">
                             <div class="row"><div class="col-md-4 col-md-offset-4">
-                              {h.kicker && <p class="mininaglowek">{h.kicker}</p>}
+                              {h.kicker && <p class="mininaglowek" data-sc="settings:home_counters:kicker:text" data-sc-label="Liczniki — nadtytuł">{h.kicker}</p>}
                               <hr class="hr-zmienny-2" />
                             </div></div>
-                            {h.heading && <div class="row"><div class="col-md-12"><h2 set:html={h.heading} /></div></div>}
-                            {h.body_html && <div class="row"><div class="col-md-12"><Fragment set:html={h.body_html} /></div></div>}
+                            {h.heading && <div class="row"><div class="col-md-12"><h2 data-sc="settings:home_counters:heading:text" data-sc-label="Liczniki — nagłówek" set:html={h.heading} /></div></div>}
+                            {h.body_html && <div class="row"><div class="col-md-12"><div data-sc="settings:home_counters:body_html:html" data-sc-label="Liczniki — opis" set:html={h.body_html} /></div></div>}
                             <div class="clearfix"></div>
                           </div>
                         </div>
@@ -40,9 +40,9 @@ const h = c.settings.home_counters ?? {};
                             <div class="counter ">
                               <div class="title">
                                 <div class="ist-ccount">
-                                  <span class="number number_style" data-counter={cn.value}>0</span>{cn.suffix}
+                                  <span class="number number_style" data-counter={cn.value} data-sc={`counters:${cn.id}:value:number`} data-sc-label="Licznik — wartość">0</span>{cn.suffix}
                                 </div>
-                                <div class="row"><div class="col-md-12"><p>{cn.label}</p></div></div>
+                                <div class="row"><div class="col-md-12"><p data-sc={`counters:${cn.id}:label:text`} data-sc-label="Licznik — podpis">{cn.label}</p></div></div>
                               </div>
                             </div>
                           </div>

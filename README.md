@@ -137,6 +137,38 @@ które edytor z własnym schematem (TipTap/ProseMirror) skasowałby przy pierwsz
 
 ---
 
+## Edytor wizualny (edycja na stronie)
+
+Poza panelem treść można zmieniać **bezpośrednio na stronie**, tak jak w Elementorze.
+
+Po zalogowaniu w `/admin` na każdej podstronie pojawia się dyskretny przycisk **„Edytuj stronę”**.
+Po kliknięciu włącza się tryb edycji: edytowalne obszary dostają pomarańczową ramkę, po najechaniu
+pokazuje się nazwa pola, a klik pozwala pisać w miejscu. Zdjęcia otwierają bibliotekę plików.
+Na dole ekranu jest pasek ze stanem — **„Wszystko zapisane”** albo **„Niezapisane zmiany: N”** —
+oraz przyciski **Zapisz**, **Opublikuj**, **Panel** i **Zakończ**. Tryb trzyma się karty przeglądarki,
+więc można przechodzić między podstronami i edytować dalej.
+
+Co jest edytowalne: nagłówki i teksty wszystkich sekcji strony głównej, treść każdej podstrony,
+pozycje menu, dane kontaktowe, teksty przycisków, stopka oraz wszystkie zdjęcia (logo, slajdy,
+banery, kafelki oferty, ikony wyróżników).
+
+Po kliknięciu **Opublikuj** pasek odpytuje `/build.json` i sam odświeża stronę, gdy nowa wersja
+wejdzie na serwer — nie trzeba pilnować zakładki Actions.
+
+**Odwiedzający nie pobiera kodu edytora.** W `Base.astro` jest tylko mały skrypt (1,4 kB), który
+sprawdza, czy w przeglądarce jest sesja redakcji; dopiero wtedy dociąga właściwą paczkę.
+
+Zapis jest odporny na ślady po skryptach frontu: `captureHtml()` w `src/editor/app.js` zdejmuje
+`contenteditable`, atrybuty `data-sc*`, opakowania `.table-responsive`, klasy dokładane przyciskom
+i wyrównane wysokości, a galerię wycina całkowicie — jest osobną listą w panelu, nie częścią treści.
+
+> **Uwaga przy dzieleniu treści.** Na stronie „O nas” treść jest przecięta znacznikiem
+> `<!--GALERIA-->`. Oba kawałki muszą być **samodzielnie zbalansowane** (tyle samo `<div>` co
+> `</div>`) — inaczej przeglądarka wciągnie galerię do pierwszego kawałka i edytor zapisze ją
+> do treści strony.
+
+---
+
 ## Struktura repozytorium
 
 ```

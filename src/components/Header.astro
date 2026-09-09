@@ -26,7 +26,7 @@ const isActive = (href: string) => {
                     <div class="col-xs-12 col-lg-2 hidden-xs hidden-sm hidden-md">
                       <div class="inner">
                         <a href="/" class="logo">
-                          <img src={brand.logo} alt="Soft Car Service logo" width="170" height="90" />
+                          <img src={brand.logo} alt="Soft Car Service logo" width="170" height="90" data-sc="settings:branding:logo:image" data-sc-label="Logo" />
                         </a>
                       </div>
                       <div class="clearfix"></div>
@@ -57,14 +57,14 @@ const isActive = (href: string) => {
                                   isActive(item.href) ? 'current active' : '',
                                   item.children && item.children.length ? 'dropdown parent' : '',
                                 ].filter(Boolean).join(' ')}>
-                                  <a href={item.href} target={item.target}>{item.label}</a>
+                                  <a href={item.href} target={item.target} data-sc={`menu_items:${item.id}:label:text`} data-sc-label="Pozycja menu">{item.label}</a>
                                   {item.children && item.children.length > 0 && (
                                     <>
                                       <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label={`Rozwiń: ${item.label}`}> <span class="caret"></span></a>
                                       <ul class="dropdown-menu">
                                         {item.children.map((sub) => (<Fragment>
                                           <li class={'item-' + sub.id}>
-                                            <a href={sub.href} target={sub.target}>{sub.label}</a>
+                                            <a href={sub.href} target={sub.target} data-sc={`menu_items:${sub.id}:label:text`} data-sc-label="Pozycja menu">{sub.label}</a>
                                           </li>{" "}</Fragment>
                                         ))}
                                       </ul>
@@ -92,6 +92,8 @@ const isActive = (href: string) => {
                                   href={b.href}
                                   target={b.href?.startsWith('http') ? '_blank' : undefined}
                                   rel={b.href?.startsWith('http') ? 'noopener' : undefined}
+                                  data-sc={`settings:header_cta:${i}.label:text`}
+                                  data-sc-label="Przycisk w nagłówku"
                                 >{b.label}</a>
                               </p>
                             </div>

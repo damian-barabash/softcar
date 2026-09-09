@@ -3,6 +3,7 @@ import { getContent } from '../lib/content';
 const c = await getContent();
 const images = c.gallery;
 ---
+<div class="row"><div class="col-md-12"><div>
 <div id="droppicsgallery35" data-id="35" class="droppicsgallery droppicsgallerymasonry 0" data-listchid="35">
   <div class="droppicspictures">
     {images.map((img) => (
@@ -14,3 +15,4 @@ const images = c.gallery;
     ))}
   </div>
 </div>
+</div></div></div>

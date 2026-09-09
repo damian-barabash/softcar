@@ -19,7 +19,7 @@ const head = c.settings.home_usp ?? {};
                       <div class="col-xs-12 col-md-3">
                         <div class="inner">
                           <div class="row"><div class="col-md-12">
-                            {head.kicker && <p class="mininaglowek">{head.kicker}</p>}
+                            {head.kicker && <p class="mininaglowek" data-sc="settings:home_usp:kicker:text" data-sc-label="Wyróżniki — nadtytuł">{head.kicker}</p>}
                             <hr class="hr-zmienny-2" />
                           </div></div>
                         </div>
@@ -34,8 +34,8 @@ const head = c.settings.home_usp ?? {};
                           <div class="row">
                             {c.usp.map((u, i) => (
                               <div class={`col-md-3 col-sm-6 ${i === 0 ? 'margin-bottom-sm margin-bottom-xs' : 'margin-bottom-xs margin-bottom-sm'}`}>
-                                <p><img src={u.icon} alt={u.icon_alt ?? u.label} width="50" height="50" loading="lazy" /></p>
-                                <p class="text-stylekmlrhjv6" set:html={u.label} />
+                                <p><img src={u.icon} alt={u.icon_alt ?? u.label} width="50" height="50" loading="lazy" data-sc={`usp_items:${u.id}:icon:image`} data-sc-label="Wyróżnik — ikona" /></p>
+                                <p class="text-stylekmlrhjv6" data-sc={`usp_items:${u.id}:label:text`} data-sc-label="Wyróżnik — podpis" set:html={u.label} />
                               </div>
                             ))}
                           </div>

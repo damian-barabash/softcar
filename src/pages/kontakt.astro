@@ -18,7 +18,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${co.street}
     <div class="center" data-center="1">
       <div id="content" class="col-xs-12">
         <article class="item-page" data-content="1">
-          <Fragment set:html={page.body_html} />
+          <div data-sc={`pages:${page.id}:body_html:html`} data-sc-label="Treść strony" set:html={page.body_html} />
         </article>
       </div>
       <div class="clearfix"></div>
@@ -45,24 +45,24 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${co.street}
                             <div class="row">
                               <div class="margin-bottom-xl-lg-md margin-bottom-sm margin-bottom-xs col-md-3">
                                 <p><img class="icon-bg-var-2" src="/images/design/icon-localization.webp" alt="Pin mapy" width="20" height="20" />&nbsp; &nbsp;<strong>Siedziba główna</strong></p>
-                                <p class="text-stylekmlrhjv6">{co.name}</p>
-                                <p>{co.street},<br />{co.zip} {co.city}</p>
+                                <p class="text-stylekmlrhjv6" data-sc="settings:company:name:text" data-sc-label="Nazwa firmy">{co.name}</p>
+                                <p><span data-sc="settings:company:street:text" data-sc-label="Ulica">{co.street}</span>,<br /><span data-sc="settings:company:zip:text" data-sc-label="Kod pocztowy">{co.zip}</span> <span data-sc="settings:company:city:text" data-sc-label="Miasto">{co.city}</span></p>
                                 <p>&nbsp;</p>
                               </div>
                               <div class="col-md-3">
                                 <p><img class="icon-bg-var-2" src="/images/design/icon-open-time.webp" alt="Zegar" width="20" height="20" />&nbsp; &nbsp;<strong>Godziny otwarcia</strong></p>
-                                <p>{co.hours}</p>
+                                <p data-sc="settings:company:hours:text" data-sc-label="Godziny otwarcia">{co.hours}</p>
                                 <p>&nbsp;</p>
                               </div>
                               <div class="margin-bottom-xl-lg-md margin-bottom-sm margin-bottom-xs col-md-3">
                                 <p><img class="icon-bg-var-2" src="/images/design/icon-phone.webp" alt="Telefon" width="20" height="20" />&nbsp; &nbsp;<strong>Telefon</strong></p>
                                 <p>&nbsp;</p>
-                                <p><a class="btn btn-default btn-lg" href={co.phone_href}>{co.phone}</a></p>
+                                <p><a class="btn btn-default btn-lg" href={co.phone_href} data-sc="settings:company:phone:text" data-sc-label="Telefon">{co.phone}</a></p>
                               </div>
                               <div class="margin-bottom-sm margin-bottom-xs col-md-3">
                                 <p><img class="icon-bg-var-2" src="/images/design/icon-mail.webp" alt="Mail" width="20" height="20" />&nbsp; &nbsp;<strong>E-mail</strong></p>
                                 <p>&nbsp;</p>
-                                <p><a class="btn btn-default btn-lg" href={`mailto:${co.email}`}>{co.email}</a></p>
+                                <p><a class="btn btn-default btn-lg" href={`mailto:${co.email}`} data-sc="settings:company:email:text" data-sc-label="E-mail">{co.email}</a></p>
                               </div>
                             </div>
                             <div class="clearfix"></div>
@@ -94,8 +94,8 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${co.street}
                                   <div class="col-xs-12 col-md-6">
                                     <div class="inner">
                                       <div class="row"><div class="col-md-12">
-                                        <h2>{f.heading}</h2>
-                                        <p>{f.lead}</p>
+                                        <h2 data-sc="settings:contact_form:heading:text" data-sc-label="Formularz — nagłówek">{f.heading}</h2>
+                                        <p data-sc="settings:contact_form:lead:text" data-sc-label="Formularz — tekst">{f.lead}</p>
                                         <p class="mininaglowek-4">{f.required_note}</p>
                                       </div></div>
                                     </div>

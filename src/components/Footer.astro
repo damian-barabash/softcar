@@ -76,10 +76,10 @@ const copyright = String(footer.copyright_html ?? '').replace('{year}', String(n
                       <div class="inner text-center-sm text-center-xs">
                         <div class="center">
                           <div class="row">
-                            <div class="col-md-6" set:html={copyright}></div>
+                            <div class="col-md-6" data-sc="settings:footer:copyright_html:html" data-sc-label="Stopka — prawa autorskie" set:html={copyright}></div>
                             <div class="col-md-6 justify-end margin-top-sm margin-top-xs">
-                              {(footer.legal_links ?? []).map((l: any) => (
-                                <p><a href={l.href}>{l.label}</a></p>
+                              {(footer.legal_links ?? []).map((l: any, i: number) => (
+                                <p><a href={l.href} data-sc={`settings:footer:legal_links.${i}.label:text`} data-sc-label="Odnośnik w stopce">{l.label}</a></p>
                               ))}
                             </div>
                           </div>

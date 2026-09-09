@@ -93,5 +93,20 @@ const jsonLd = {
       </div>
     </div>
     <script src="/js/site.js" is:inline defer></script>
+
+    <!-- Wizualny edytor: kod pobiera sie tylko wtedy, gdy w przegladarce jest sesja redakcji.
+         Zwykly odwiedzajacy nie sciaga ani bajta tej paczki. -->
+    <script>
+      const editable = (() => {
+        try {
+          return !!localStorage.getItem('softcar-admin') || new URLSearchParams(location.search).has('edit');
+        } catch {
+          return false;
+        }
+      })();
+      if (editable) {
+        import('../editor/app.js').then((m) => m.init()).catch(() => {});
+      }
+    </script>
   </body>
 </html>

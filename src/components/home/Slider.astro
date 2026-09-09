@@ -23,14 +23,14 @@ const slides = c.slides;
                               <div class="center">
                                 <div class="text  col-xs-12">
                                   <div class="row"><div class="col-md-12 text-center">
-                                    {s.kicker && <p class="mininaglowek">{s.kicker}</p>}
+                                    {s.kicker && <p class="mininaglowek" data-sc={`slides:${s.id}:kicker:text`} data-sc-label="Slajd — nadtytuł">{s.kicker}</p>}
                                     <hr class="hr-zmienny-2" />
-                                    {s.title && <p class="heading3" set:html={s.title} />}
-                                    <Fragment set:html={s.body_html ?? ''} />
+                                    {s.title && <p class="heading3" data-sc={`slides:${s.id}:title:text`} data-sc-label="Slajd — nagłówek" set:html={s.title} />}
+                                    <div data-sc={`slides:${s.id}:body_html:html`} data-sc-label="Slajd — treść" set:html={s.body_html ?? ''} />
                                   </div></div>
                                   {s.button_label && (
                                     <div class="button-wrapper-slide  text-center">
-                                      <a class="btn" href={s.button_href ?? '#'} target="_self" set:html={s.button_label} />
+                                      <a class="btn" href={s.button_href ?? '#'} target="_self" data-sc={`slides:${s.id}:button_label:text`} data-sc-label="Slajd — przycisk" set:html={s.button_label} />
                                     </div>
                                   )}
                                   <div class="clearfix"></div>
@@ -41,7 +41,7 @@ const slides = c.slides;
                             </div>
                             <picture>
                               <source media="(max-width: 480px)" srcset="/images/design/blank.png" />
-                              <img src={s.image} alt={s.title ?? ''} class=" slideimage" width="1920" height="900" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
+                              <img src={s.image} alt={s.title ?? ''} class=" slideimage" data-sc={`slides:${s.id}:image:image`} data-sc-label="Slajd — tło" width="1920" height="900" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
                             </picture>
                           </div>
                         ))}

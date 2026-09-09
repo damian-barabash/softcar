@@ -11,5 +11,5 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 ---
 <Base bodyClass="page" title={page.meta_title ?? page.title} description={page.meta_desc ?? undefined}>
-  <ArticlePage title={page.title} banner={page.banner_image} body={page.body_html} parent={{ label: 'Oferta', href: '/oferta' }} />
+  <ArticlePage pageId={page.id} title={page.title} banner={page.banner_image} body={page.body_html} parent={{ label: 'Oferta', href: '/oferta' }} />
 </Base>

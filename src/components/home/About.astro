@@ -20,21 +20,21 @@ const cta = a.cta ?? {};
                       <div class="col-xs-12">
                         <div class="inner">
                           <div class="row"><div class="col-md-3 col-sm-4">
-                            {a.kicker && <p class="mininaglowek">{a.kicker}</p>}
+                            {a.kicker && <p class="mininaglowek" data-sc="settings:home_about:kicker:text" data-sc-label="O nas — nadtytuł">{a.kicker}</p>}
                             <hr class="hr-zmienny-2" />
                           </div></div>
                           <div class="row">
                             <div class="col-md-8">
-                              {a.heading && <h1 set:html={a.heading} />}
-                              <Fragment set:html={a.body_html ?? ''} />
+                              {a.heading && <h1 data-sc="settings:home_about:heading:text" data-sc-label="O nas — nagłówek" set:html={a.heading} />}
+                              <div data-sc="settings:home_about:body_html:html" data-sc-label="O nas — treść" set:html={a.body_html ?? ''} />
                             </div>
                             <div class="col-md-4">
                               <div class="well well-2-30px">
-                                {cta.title && <p class="text-stylekmlrhjv6" set:html={cta.title} />}
+                                {cta.title && <p class="text-stylekmlrhjv6" data-sc="settings:home_about:cta.title:text" data-sc-label="Box — tytuł" set:html={cta.title} />}
                                 <hr />
-                                <Fragment set:html={cta.body_html ?? ''} />
+                                <div data-sc="settings:home_about:cta.body_html:html" data-sc-label="Box — treść" set:html={cta.body_html ?? ''} />
                                 {cta.button_label && (
-                                  <p><a class="btn btn-default btn-default-size" href={cta.button_href ?? '#'} set:html={cta.button_label} /></p>
+                                  <p><a class="btn btn-default btn-default-size" href={cta.button_href ?? '#'} data-sc="settings:home_about:cta.button_label:text" data-sc-label="Box — przycisk" set:html={cta.button_label} /></p>
                                 )}
                               </div>
                             </div>
