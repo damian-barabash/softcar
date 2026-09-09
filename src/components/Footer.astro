@@ -57,10 +57,10 @@ const copyright = String(footer.copyright_html ?? '').replace('{year}', String(n
                         <div class="center">
                           <div class="navbar-custom">
                             <ul class="nav nav-pills menu">
-                              {menu.map((m) => (
+                              {menu.map((m) => (<Fragment>
                                 <li class={`item-${m.id}${(m.href.replace(/\/$/, '') || '/') === path ? ' current' : ''}`}>
                                   <a href={m.href} target={m.target}>{m.label}</a>
-                                </li>
+                                </li>{" "}</Fragment>
                               ))}
                             </ul>
                           </div>

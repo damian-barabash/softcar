@@ -349,26 +349,32 @@
       cols.push({ inner: el, col: p, span: span(p) });
     });
 
-    /* grupujemy kolejne elementy o tym samym rodzicu-sekcji i tej samej szerokosci */
-    var runs = [], cur = null;
+    /* Kolejne kolumny w obrebie tej samej sekcji tworza wiersz, dopoki ich szerokosci
+       miesza sie w 12 kolumnach siatki — tak jak robi to Bootstrap. Kolumny w jednym
+       wierszu moga miec rozne szerokosci (np. naglowek: 2 + 6 + 4). */
+    var rows = [], row = null, acc = 0, sec = null;
     cols.forEach(function (it) {
-      var sec = it.inner.closest('[class*="section"]') || document.body;
-      if (cur && cur.sec === sec && cur.span === it.span) cur.items.push(it);
-      else { cur = { sec: sec, span: it.span, items: [it] }; runs.push(cur); }
+      var s = it.inner.closest('[class*="section"]') || document.body;
+      var offset = (it.col.className.match(/\bcol-(?:xs|sm|md|lg)-offset-(\d+)\b/) || [0, 0])[1];
+      var width = it.span + Number(offset);
+      if (!row || s !== sec || acc + width > 12) {
+        row = [];
+        rows.push(row);
+        acc = 0;
+        sec = s;
+      }
+      row.push(it);
+      acc += width;
     });
 
-    runs.forEach(function (run) {
-      if (run.items.length < 2 || run.span >= 12) return;
-      var per = Math.max(1, Math.floor(12 / run.span));
-      for (var i = 0; i < run.items.length; i += per) {
-        var row = run.items.slice(i, i + per);
-        if (row.length < 2) continue;
-        var max = 0;
-        row.forEach(function (it) { max = Math.max(max, it.inner.getBoundingClientRect().height); });
-        row.forEach(function (it) { it.inner.style.height = Math.round(max) + 'px'; });
-      }
+    rows.forEach(function (r) {
+      if (r.length < 2) return;
+      var max = 0;
+      r.forEach(function (it) { max = Math.max(max, it.inner.getBoundingClientRect().height); });
+      r.forEach(function (it) { it.inner.style.height = Math.round(max) + 'px'; });
     });
   }
+
   var mhTimer;
   function scheduleMatch() { clearTimeout(mhTimer); mhTimer = setTimeout(matchHeights, 60); }
 

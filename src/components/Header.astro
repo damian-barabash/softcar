@@ -51,7 +51,7 @@ const isActive = (href: string) => {
                           </div>
                           <div class="navbar-collapse collapse" id="navbar-collapse-258">
                             <ul class="nav navbar-nav menu">
-                              {menu.map((item) => (
+                              {menu.map((item) => (<Fragment>
                                 <li class={[
                                   'item-' + item.id,
                                   isActive(item.href) ? 'current active' : '',
@@ -62,15 +62,15 @@ const isActive = (href: string) => {
                                     <>
                                       <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label={`Rozwiń: ${item.label}`}> <span class="caret"></span></a>
                                       <ul class="dropdown-menu">
-                                        {item.children.map((sub) => (
+                                        {item.children.map((sub) => (<Fragment>
                                           <li class={'item-' + sub.id}>
                                             <a href={sub.href} target={sub.target}>{sub.label}</a>
-                                          </li>
+                                          </li>{" "}</Fragment>
                                         ))}
                                       </ul>
                                     </>
                                   )}
-                                </li>
+                                </li>{" "}</Fragment>
                               ))}
                             </ul>
                           </div>
