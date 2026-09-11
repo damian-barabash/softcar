@@ -11,3 +11,7 @@ export const SUPABASE_URL =
 export const SUPABASE_ANON_KEY =
   env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_rivyDZ7aN9C_2JxMph4SWg_8I7z8vUH';
 export const SITE_URL = 'https://softcar.pl';
+
+// Identyfikator kontenera Google Tag Managera (GA4 i reszta tagow siedzi juz w samym GTM).
+// Jawny z zalozenia — trafia do kodu kazdej strony publicznej.
+export const GTM_ID = env.PUBLIC_GTM_ID || 'GTM-W8B6TBMF';
